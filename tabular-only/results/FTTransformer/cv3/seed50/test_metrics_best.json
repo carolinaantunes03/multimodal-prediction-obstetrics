@@ -1,0 +1,11 @@
+{
+ "Balanced Accuracy": 0.5,
+ "Accuracy": 0.6951672862453532,
+ "Precision": 0.7880902696203756,
+ "Recall": 0.6951672862453532,
+ "F1 Score": 0.5701591338942151,
+ "roc auc": 0.698382679013956,
+ "Matthews corrcoef": 0.0,
+ "Specificity": 1.0,
+ "NPV": 0.6951672862453532
+}
