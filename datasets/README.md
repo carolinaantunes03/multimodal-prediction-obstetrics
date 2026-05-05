@@ -46,6 +46,7 @@ Used only for final testing.
 
 Each dataset should be stored in a separate folder with the following structure:
 
+```
 prospective-dataset/
 │── all_prospective_data.csv
 │── PT_data_processed.csv      (Clinical Practice values)
@@ -55,7 +56,9 @@ prospective-dataset/
 │ │ |── head.png
 │ │ └── femur.png
 │ └── ...
+```
 
+```
 retrospective-dataset/
 │── all_retrospective_data.csv
 │── images/
@@ -80,6 +83,7 @@ retrospective-dataset/
 │
 │── cv3/
 │ └── ...
+```
 
 ## CSV File Requirements
 
