@@ -6,7 +6,7 @@ EDCA is a low-cost AutoML framework capable of creating simpler but efficient ML
 
 EDCA is a Python library for Automated Machine Learning (AutoML). It optimizes the entire ML pipeline. Given a classification dataset, EDCA starts by making an analysis of the features types and characteristics. This analysis serves to define the data transformations required for the data in question. Then, with the pipeline steps required, it starts the search for its bests estimators and models for each step of the pipeline. The search relies on a Genetic Algorithm. In the end, the user receives the best pipeline found ready to make predictions over unseen data.
 
-![image info](docs/images/edca/edca-process-overview.png)
+
 
 ## Installation
 
@@ -36,7 +36,7 @@ Start by importing it
 ```python
 
 from edca.evodata import DataCentricAutoML
-
+```
 
 To run the benchmark using Docker, change the code and configuration files, accordingly, and then run:
 
