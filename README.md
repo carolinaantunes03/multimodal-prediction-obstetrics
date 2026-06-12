@@ -6,69 +6,54 @@ This project presents an evaluation of multimodal machine learning models for pr
 
 - `*datasets*`: Datasets used in the experiments
 - `*environments*`: Environment configuration files used for each model
-- `*image-only*`: Code for image-only experiments
-- `*multimodal-architecture*`: Code for multimodal experiments
-    - `*multimodal-architecture/checkpoints_external_validation*`: Links to model weights trained on the retrospective dataset for external validation
-    - `*multimodal-architecture/checkpoints_internal_validation*`: Links to best-run model weights from retrospective dataset training using 3-fold cross-validation 
-    - `multimodal-architecture/ensembles_experiment*`: Code for ensembles experiments with clinical practice
-- `*tabular-only*`: Code for tabular-only experiments
+- `*image-only*`: Image-only experiments
+- `*tabular-only*`: Tabular-only experiments
+- `*multimodal-architecture*`: Multimodal experiments
+    - `*multimodal-architecture/models_prospective*`: Weights trained on retrospective data (for external validation)
+    - `*multimodal-architecture/ensembles_experiment*`: Ensemble experiments combining model + clinical practice
+- `*embeddings-optimisation` : Embedding optimisation experiments
+- `*final_architecture*` : Code to run the final multimodal architecture
+- `*results*` : Detailed results across all experimental stages
   
-### Notes
-1. Most directories contain their own *README.md* file with detailed explanations.
+ Most directories contain their own *README.md* file with detailed explanations.
 
 
-## Getting Started
+## Getting Started 
 
-This project uses state-of-the-art models as both image encoders and tabular encoders.
+### Multimodal Experiments
 
-The multimodal model employs an FTTransformer as the tabular encoder and supports different choices of image encoders.
+The multimodal model uses an FT-Transformer as the tabular encoder and supports multiple image encoders. To run an experiment:
 
-For each image encoder, you must clone the corresponding model repository and use its associated environment configuration file.
-
-To run an experiment, you only need to:
-
-- update the required file paths
-- select the desired image encoder in multimodal-architecture/models.py.
-
-
-### Image Encoders, Weights and Environments 
-1. **MedViTV2**
-
-Clone this github repository: https://github.com/Omid-Nejati/MedViTV2.git
-
-The pretrained FetalCLIP model can be downloaded from the following link:
-[Download MedViT_base_Fetal.pth](https://drive.google.com/file/d/16bWPHWGQxvq_ynVYnRRfhANNMNlFx9O1/view)
-
-To run the model with MedViTV2 as the image encoder, use the environment file [medvit2.yml](./environments/medvit2.yml).
-
-2. **MedMamba**
-
-Clone this github repository: https://github.com/YubiaoYue/MedMamba.git
-
-The pretrained FetalCLIP model can be downloaded from the following link:
-
-[Download MedMamba.pth](https://zenodo.org/records/3904280)
-
-To run the model with MedMamba as the image encoder, use the environment file [medmamba.yml](./environments/medmamba.yml).
-
-3. **FetalCLIP**
-
-Clone this github repository: https://github.com/BioMedIA-MBZUAI/FetalCLIP.git
-
-The pretrained FetalCLIP model can be downloaded from the following link:
-
-[Download FetalCLIP_weights.pt](https://huggingface.co/numansaeed/fetalclip-model/blob/main/FetalCLIP_weights.pt)
-
-To run the model with FetalCLIP as the image encoder, use the environment file [fetalclip.yml](./environments/fetalclip.yml).
+1. Clone the repository for your chosen image encoder (see table below)
+2. Download the corresponding pretrained weights
+3. Set up the associated conda environment
+4. Update the required file paths in the config
+5. Select the desired image encoder in `*multimodal-architecture/models.py*`
 
 
-4. **MedSigLiP**
+|Image Encoder  | Repository |Pre-Trained Weights  | Environment |
+|--|--|--|--|
+|**MedViT-V2**  | [GitHub](https://github.com/Omid-Nejati/MedViTV2.git) |[Download MedViT_base_Fetal.pth](https://drive.google.com/file/d/16bWPHWGQxvq_ynVYnRRfhANNMNlFx9O1/view) | [medvit2.yml](./environments/medvit2.yml) |
+|**MedMamba**  | [GitHub](https://github.com/YubiaoYue/MedMamba.git) |[Download MedMamba.pth](https://zenodo.org/records/3904280) | [medmamba.yml](./environments/medmamba.yml) |
+|**FetalCLIP**  | [GitHub](https://github.com/BioMedIA-MBZUAI/FetalCLIP.git)|[Download FetalCLIP_weights.pt](https://huggingface.co/numansaeed/fetalclip-model/blob/main/FetalCLIP_weights.pt)  | [fetalclip.yml](./environments/fetalclip.yml) |
+|**MedSigLiP** | [HuggingFace](https://huggingface.co/google/medsiglip-448) *|- | [geral.yml](./environments/geral.yml) |
+|**Swin Transformer** | - |- | [geral.yml](./environments/geral.yml). |
 
-To run the model with MedSigLiP as the image encoder, use the environment file [geral.yml](./environments/geral.yml).
-You also need access to MedSigLiP models on Hugging Face: https://huggingface.co/google/medsiglip-448
-Generate a Hugging Face write access token by going to [settings](https://huggingface.co/settings/tokens). 
 
-5. **Swin Transformer**
+*MedSigLiP requires a Hugging Face account with write access. Generate a token [here](https://huggingface.co/settings/tokens). 
 
-To run the model with Swin Transformer as the image encoder, use the environment file [geral.yml](./environments/geral.yml).
+
+## Embedding Optimisation Experiments
+
+After identifying the best-performing multimodal model, you can extract embeddings in multiple configurations using:
+`*multimodal_architecture/extract_embeddings/extract_embeddings.py*`
+
+Alternatively, use the pretrained model weights from `*multimodal-architecture/models/prospective/*`.
+
+### Steps:
+
+1. Copy the resulting embeddings dataset to `*embeddings-optimisation/data/datasets/*`
+2. Configure the EDCA algorithm parameters in `*embeddings-optimisation/benchmarks/test_config.json*`
+3. Run the optimisation with `*docker-compose.benchmark.yml*`
+4. Analyse results using the scripts in `*embeddings-optimisation/analysis/*`
 
