@@ -15,7 +15,7 @@ Before running, make sure you have the following:
 
 |Requirement  | Details |
 |--|--|
-|Best Multimodal Model Weights  | Download from [weights](https://drive.google.com/drive/folders/1_MAX3CrnvtrBHTU_izK3f_6LHKpMugcv? |
+|Best Multimodal Model Weights  | Download from [weights](https://drive.google.com/drive/folders/1_MAX3CrnvtrBHTU_izK3f_6LHKpMugcv) |
 |EDCA pipeline  | `*utils/final_pipeline_edca*` |
 |Architecture files  | `*data.py*`, `*columns_config.json*`, `*models.py*` inside `*multimodal_architecture/*` |
 |MedViT-V2 repository  | Must be placed inside `*multimodal_architecture/*` |
