@@ -36,4 +36,4 @@ Before running, make sure you have the following:
 
 The diagram below illustrates the proposed multimodal architecture workflow:
 
-<![final_architecture](utils/pipeline_model_interface.png) >
+![final_architecture](utils/pipeline_model_interface.png) 
