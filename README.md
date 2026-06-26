@@ -83,3 +83,17 @@ docker compose -f docker-compose.benchmark.yml -p edca-benchmark up
 ```
 4. Analyse results using the scripts in `*embeddings-optimisation/analysis/*`
 
+## Final Model 
+
+To use the final model obtained in this project run the following code inside `*final_architecture*`: 
+
+```
+conda env create -f medvit2_full.yml
+conda activate medvit2_full
+python evaluate_model.py
+```
+
+Before that you should ensure the following:
+- MedViT-V2 repository inside `*multimodal_architecture/*` .
+- Download the model weights from [weights](https://drive.google.com/drive/folders/1_MAX3CrnvtrBHTU_izK3f_6LHKpMugcv) and place them in `*multimodal_architecture/models_prospective/MedViT2_nopt/*`.
+- `data.py`, `columns_config.json`, `models.py` are present in `*multimodal_architecture/*`.

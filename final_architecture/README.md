@@ -1,4 +1,4 @@
-# Final Model - Code & Usage Guide 
+# Final Model
 
 This folder contains the code to run the final multimodal architecture for mode of delivery prediction.
 
