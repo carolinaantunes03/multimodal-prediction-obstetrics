@@ -8,29 +8,23 @@ This folder contains the code to run the final multimodal architecture for mode 
 
 - `*evaluate_model*`: Evaluates the final model on the full prospective dataset.
 
-## Requirements
-
-Before running, make sure you have the following:
-
-
-|Requirement  | Details |
-|--|--|
-|Best Multimodal Model Weights  | Download from [weights](https://drive.google.com/drive/folders/1_MAX3CrnvtrBHTU_izK3f_6LHKpMugcv) |
-|EDCA pipeline  | `*utils/final_pipeline_edca*` |
-|Architecture files  | `*data.py*`, `*columns_config.json*`, `*models.py*` inside `*multimodal_architecture/*` |
-|MedViT-V2 repository  | Must be placed inside `*multimodal_architecture/*` |
-|Environments  | `*medvit2_full*` - see `*environments/*` for requirements |
-
 
 ## Setup
 
-1. Clone or download this repository.
-2. Set up the `*medvit2_full*` conda environment using the .yml file in `*environments/*` .
-3. Place the MedViT-V2 repository inside `*multimodal_architecture/*` .
-4. Download the model weights from the link above and place them in `*multimodal_architecture/models_prospective/MedViT2_nopt/*`.
-5. Ensure `*data.py*`, `*columns_config.json*`, `*models.py*` are present in `*multimodal_architecture/*`.
-6. Make sure you have a prospective dataset inside  `*datasets/*`
-7. Run  `*evaluate_model*` to get the predictions for mode of delivery prediction on the prospective dataset. 
+To use the final model obtained in this project run the following code: 
+
+```
+conda env create -f medvit2_full.yml
+conda activate medvit2_full
+python evaluate_model.py
+```
+
+Before that you should ensure the following:
+- MedViT-V2 repository inside `*multimodal_architecture/*` .
+- Download the model weights from [weights](https://drive.google.com/drive/folders/1_MAX3CrnvtrBHTU_izK3f_6LHKpMugcv) and place them in `*multimodal_architecture/models_prospective/MedViT2_nopt/*`.
+- `data.py`, `columns_config.json`, `models.py` are present in `*multimodal_architecture/*`.
+
+
 
 ## Architecture Overview
 

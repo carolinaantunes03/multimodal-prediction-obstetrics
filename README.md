@@ -28,7 +28,7 @@ The multimodal model uses an FT-Transformer as the tabular encoder and supports 
 2. Download the corresponding pretrained weights
 3. Set up the associated conda environment
 4. Update the required file paths in the config
-5. Select the desired image encoder in `*multimodal-architecture/models.py*`
+5. Select the desired image encoder in `multimodal-architecture/models.py`
 
 
 |Image Encoder  | Repository |Pre-Trained Weights  | Environment |
@@ -42,11 +42,34 @@ The multimodal model uses an FT-Transformer as the tabular encoder and supports 
 
 *MedSigLiP requires a Hugging Face account with write access. Generate a token [here](https://huggingface.co/settings/tokens). 
 
+After that, execute the following code inside `*multimodal-architecture*`: 
+```
+conda env create -f <environment>.yml
+conda activate <environmment>
+```
+For Internal Validation: 
+
+```
+python train_validate_multi_seeds_retrospective.py
+```
+
+For External Validation:
+```
+python external_validation.py
+```
+For Ensemble Experiments:
+```
+python ensemble_exteriment/ensembles_PC_multimodal.py
+```
+
 
 ## Embedding Optimisation Experiments
 
-After identifying the best-performing multimodal model, you can extract embeddings in multiple configurations using:
-`*multimodal_architecture/extract_embeddings/extract_embeddings.py*`
+After identifying the best-performing multimodal model, you can extract embeddings in multiple configurations running:
+
+```
+python multimodal_architecture/extract_embeddings/extract_embeddings.py
+```
 
 Alternatively, use the pretrained model weights from `*multimodal-architecture/models/prospective/*`.
 
@@ -54,6 +77,9 @@ Alternatively, use the pretrained model weights from `*multimodal-architecture/m
 
 1. Copy the resulting embeddings dataset to `*embeddings-optimisation/data/datasets/*`
 2. Configure the EDCA algorithm parameters in `*embeddings-optimisation/benchmarks/test_config.json*`
-3. Run the optimisation with `*docker-compose.benchmark.yml*`
+3. Run the optimisation with 
+```
+docker compose -f docker-compose.benchmark.yml -p edca-benchmark up
+```
 4. Analyse results using the scripts in `*embeddings-optimisation/analysis/*`
 
